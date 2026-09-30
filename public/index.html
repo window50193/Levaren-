@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LÉVAREN — Modern Moda</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header class="header"><div class="top"><button id="menuBtn" class="icon mobile">☰</button><a class="logo" href="#">LÉVAREN</a>
+<nav><a href="#new">Yeni</a><a href="#women">Kadın</a><a href="#men">Erkek</a><a href="#sale">İndirim</a></nav>
+<div class="actions"><button id="searchBtn" class="icon">⌕</button><button id="accountBtn" class="icon">♙</button><button id="favBtn" class="icon">♡</button><button id="cartBtn" class="cart">Sepet <b id="cartCount">0</b></button></div></div>
+<div id="searchBox" class="search hidden"><input id="searchInput" placeholder="Ürün ara..."><button id="searchClose">×</button></div></header>
+<main>
+<section class="hero"><div><span>YENİ SEZON 2026</span><h1>Tarzını<br><em>kendin yaz.</em></h1><p>Günlük stil için seçilmiş modern parçalar.</p><a class="btn" href="#products">Keşfet</a></div></section>
+<section class="chips" id="new"><button data-cat="Tümü" class="active">Tümü</button><button data-cat="Kadın">Kadın</button><button data-cat="Erkek">Erkek</button><button data-cat="Ayakkabı">Ayakkabı</button><button data-cat="Aksesuar">Aksesuar</button><button data-cat="İndirim">İndirim</button></section>
+<section class="toolbar"><b id="resultText">Ürünler</b><select id="sort"><option value="featured">Öne çıkan</option><option value="priceAsc">Fiyat: düşükten yükseğe</option><option value="priceDesc">Fiyat: yüksekten düşüğe</option><option value="new">En yeni</option></select></section>
+<section id="products" class="grid"></section>
+<section class="newsletter"><h2>Stil güncellemelerini kaçırma.</h2><p>Yeni ürünler ve özel fırsatlar e-postanda.</p><form id="newsletter"><input type="email" required placeholder="E-posta adresin"><button class="btn">Katıl</button></form></section>
+</main>
+<div id="overlay" class="overlay"></div>
+<aside id="drawer" class="drawer"><button class="x" data-close="drawer">×</button><h2>Sepetim</h2><div id="cartItems"></div><div class="total"><span>Toplam</span><strong id="cartTotal">₺0</strong></div><button id="checkout" class="btn wide">Siparişi tamamla</button></aside>
+<section id="account" class="modal"><button class="x" data-close="account">×</button><div id="accountBody"></div></section>
+<section id="productModal" class="modal productModal"><button class="x" data-close="productModal">×</button><div id="productBody"></div></section>
+<section id="checkoutModal" class="modal"><button class="x" data-close="checkoutModal">×</button><div id="checkoutBody"></div></section>
+<div id="toast"></div>
+<footer><b>LÉVAREN</b><span>© 2026 LÉVAREN</span><span>Güvenli alışveriş · Kolay iade</span></footer>
+<script src="/app.js"></script></body></html>
