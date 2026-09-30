@@ -101,7 +101,10 @@ $("#checkoutForm").onsubmit=async e=>{
     toast("Siparişin oluşturuldu: "+data.id);showAccount();
   }catch(err){toast(err.message||"Sipariş oluşturulamadı.")}finally{btn.disabled=false;btn.textContent="Siparişi oluştur"}
 };
-$$("[data-close]").forEach(b=>b.onclick=()=>$("#"+b.dataset.close).classList.remove("show"));
+$$("[data-close]").forEach(b=>b.onclick=()=>{
+  $(b.dataset.close).classList.remove("show");
+  document.body.style.overflow="";
+});
 $$("[data-open]").forEach(b=>b.onclick=()=>{if(b.dataset.open==="account")showAccount()});
 $$(".filter").forEach(b=>b.onclick=()=>{$$(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");state.filter=b.dataset.filter;renderProducts()});
 $("#menuOpen").onclick=()=>$("#mobileMenu").classList.add("show");$("#menuClose").onclick=()=>$("#mobileMenu").classList.remove("show");
