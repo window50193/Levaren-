@@ -97,7 +97,13 @@ $("#checkoutForm").onsubmit=async e=>{
   try{
     const r=await fetch("/api/orders",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
     const data=await r.json();if(!r.ok)throw new Error(data.error);
-    state.orders.unshift(data);state.cart=[];save();renderCart();e.target.reset();$("#checkoutModal").classList.remove("show");
+    $("#checkoutBtn").onclick=()=>{
+  if(!state.cart.length)return toast("Önce sepete ürün ekle.");
+  $("#checkoutModal").classList.add("show");
+  $("#cartDrawer").classList.remove("show");
+  $("#cartOverlay").classList.remove("show");
+  document.body.style.overflow="hidden";
+};
     toast("Siparişin oluşturuldu: "+data.id);showAccount();
   }catch(err){toast(err.message||"Sipariş oluşturulamadı.")}finally{btn.disabled=false;btn.textContent="Siparişi oluştur"}
 };
@@ -110,7 +116,13 @@ $$(".filter").forEach(b=>b.onclick=()=>{$$(".filter").forEach(x=>x.classList.rem
 $("#menuOpen").onclick=()=>$("#mobileMenu").classList.add("show");$("#menuClose").onclick=()=>$("#mobileMenu").classList.remove("show");
 $$(".mobile-menu a").forEach(a=>a.onclick=()=>$("#mobileMenu").classList.remove("show"));
 new MutationObserver(()=>{}); // keep app extensible
-
+$$("[data-close]").forEach(b=>b.onclick=e=>{
+  e.preventDefault();
+  e.stopPropagation();
+  const modal=$(b.dataset.close);
+  if(modal) modal.classList.remove("show");
+  document.body.style.overflow="";
+});
 function observe(){
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible")}),{threshold:.08});
   $$(".reveal").forEach(x=>io.observe(x));
