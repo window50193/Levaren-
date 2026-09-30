@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#11110f">
+<title>LÉVAREN — Modern Essentials</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="toast" class="toast"></div>
+
+<header class="site-header">
+  <a class="logo" href="#top">LÉVAREN<span>.</span></a>
+  <nav class="desktop-nav">
+    <a href="#shop">Koleksiyon</a><a href="#about">Hakkımızda</a><a href="#shipping">Teslimat</a>
+  </nav>
+  <div class="header-actions">
+    <button class="icon-btn" data-open="account" aria-label="Hesabım">Hesabım</button>
+    <button class="cart-btn" id="cartOpen">Sepet <b id="cartCount">0</b></button>
+    <button class="menu-btn" id="menuOpen" aria-label="Menü">☰</button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-copy reveal">
+    <p class="eyebrow">LÉVAREN / STUDIO 01</p>
+    <h1>Daha az.<br><em>Daha güçlü.</em></h1>
+    <p>Şehir hayatı için rafine kesimler, kaliteli dokular ve zamansız tonlar.</p>
+    <a class="btn dark" href="#shop">Koleksiyonu keşfet <span>→</span></a>
+  </div>
+  <div class="hero-image"><img src="/images/premium-gomlek.png" alt="LÉVAREN Premium Gömlek"></div>
+</section>
+
+<section class="manifesto reveal">
+  <p class="eyebrow">LÉVAREN PHILOSOPHY</p>
+  <h2>Şehir hayatı için tasarlanmış<br>özgün parçalar.</h2>
+</section>
+
+<section id="shop" class="shop">
+  <div class="section-head">
+    <div><p class="eyebrow">SHOP</p><h2>Seçili parçalar</h2></div>
+    <div class="filters">
+      <button class="filter active" data-filter="Tümü">Tümü</button>
+      <button class="filter" data-filter="Üst Giyim">Üst Giyim</button>
+      <button class="filter" data-filter="Alt Giyim">Alt Giyim</button>
+    </div>
+  </div>
+  <div id="productGrid" class="product-grid"></div>
+</section>
+
+<section id="about" class="split-section reveal">
+  <div><p class="eyebrow">ABOUT LÉVAREN</p><h2>Detaylarda<br>saklı bir tavır.</h2></div>
+  <p>LÉVAREN; sade siluetleri, güçlü detayları ve uzun süre giyilecek parçaları bir araya getirir. Koleksiyon, gösterişten uzak ama karakteri belirgin bir şehir gardırobu için tasarlanır.</p>
+</section>
+
+<section id="shipping" class="benefits">
+  <div><strong>01</strong><span>Kolay iade</span><small>14 gün içinde</small></div>
+  <div><strong>02</strong><span>Güvenli alışveriş</span><small>SSL korumalı akış</small></div>
+  <div><strong>03</strong><span>Hızlı gönderim</span><small>1–3 iş günü</small></div>
+  <div><strong>04</strong><span>Destek</span><small>Hafta içi 09–18</small></div>
+</section>
+</main>
+
+<footer><div class="logo">LÉVAREN<span>.</span></div><p>Modern essentials for city life.</p><small>© 2026 LÉVAREN</small></footer>
+
+<!-- Product drawer -->
+<div class="overlay" id="productOverlay"></div>
+<aside class="drawer product-drawer" id="productDrawer">
+  <button class="close" data-close="productDrawer">×</button>
+  <div id="productDetail"></div>
+</aside>
+
+<!-- Cart drawer -->
+<div class="overlay" id="cartOverlay"></div>
+<aside class="drawer cart-drawer" id="cartDrawer">
+  <div class="drawer-head"><div><p class="eyebrow">SHOPPING BAG</p><h3>Sepetim</h3></div><button class="close" data-close="cartDrawer">×</button></div>
+  <div id="cartItems" class="cart-items"></div>
+  <div class="cart-footer">
+    <div class="summary"><span>Ara toplam</span><strong id="cartTotal">₺0</strong></div>
+    <div class="summary muted"><span>Kargo</span><span id="shippingPrice">Ücretsiz</span></div>
+    <button class="btn dark full" id="checkoutBtn">Sepete git / Ödemeye geç →</button>
+    <button class="text-btn" id="clearCart">Sepeti temizle</button>
+  </div>
+</aside>
+
+<!-- Checkout modal -->
+<div class="modal-wrap" id="checkoutModal">
+  <div class="modal">
+    <button class="close" data-close="checkoutModal">×</button>
+    <p class="eyebrow">CHECKOUT</p><h2>Sipariş bilgileri</h2>
+    <form id="checkoutForm">
+      <label>Ad soyad<input name="name" required autocomplete="name" placeholder="Ad Soyad"></label>
+      <label>Telefon<input name="phone" required autocomplete="tel" placeholder="05xx xxx xx xx"></label>
+      <label>Adres<textarea name="address" required placeholder="Teslimat adresi"></textarea></label>
+      <label>Ödeme yöntemi
+        <select name="payment"><option>Kapıda Ödeme</option><option>Havale / EFT</option><option>Kart (ödeme sağlayıcısı bağlanacak)</option></select>
+      </label>
+      <div class="checkout-total"><span>Toplam</span><strong id="checkoutTotal">₺0</strong></div>
+      <button class="btn dark full" type="submit">Siparişi oluştur</button>
+    </form>
+  </div>
+</div>
+
+<!-- Account modal -->
+<div class="modal-wrap" id="accountModal">
+  <div class="modal account-modal">
+    <button class="close" data-close="accountModal">×</button>
+    <p class="eyebrow">ACCOUNT</p><h2>Hesabım</h2>
+    <div id="accountContent"></div>
+  </div>
+</div>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="menuClose">×</button>
+  <a href="#shop">Koleksiyon</a><a href="#about">Hakkımızda</a><a href="#shipping">Teslimat</a>
+  <button class="btn dark" data-open="account">Hesabım</button>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
