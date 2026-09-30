@@ -88,7 +88,7 @@ $("#cartOpen").onclick=()=>openDrawer("#cartDrawer","#cartOverlay");
 $("#cartOverlay").onclick=()=>closeDrawer("#cartDrawer","#cartOverlay");
 $("#productOverlay").onclick=()=>closeDrawer("#productDrawer","#productOverlay");
 $("#clearCart").onclick=()=>{if(state.cart.length&&confirm("Sepetteki tüm ürünler silinsin mi?")){state.cart=[];save();renderCart();toast("Sepet temizlendi.")}};
-$("#checkoutBtn").onclick=()=>{if(!state.cart.length)return toast("Önce sepete ürün ekle.");$("#checkoutModal").classList.add("show");$("#cartDrawer").classList.remove("show");$("#cartOverlay").classList.remove("show")};
+$("#checkoutBtn").onclick=()=>{if(!state.cart.length)return toast("Önce sepete ürün ekle.");$("#checkoutModal").classList.add("show");$("#cartDrawer").classList.remove("show");$("#cartOverlay").classList.remove("show");document.body.style.overflow="hidden"};
 $("#checkoutForm").onsubmit=async e=>{
   e.preventDefault();
   const f=new FormData(e.target), total=state.cart.reduce((s,i)=>s+(state.products.find(p=>p.id===i.id)?.price||0)*i.qty,0);
@@ -97,35 +97,34 @@ $("#checkoutForm").onsubmit=async e=>{
   try{
     const r=await fetch("/api/orders",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
     const data=await r.json();if(!r.ok)throw new Error(data.error);
-    $("#checkoutBtn").onclick=()=>{
-  if(!state.cart.length)return toast("Önce sepete ürün ekle.");
-  $("#checkoutModal").classList.add("show");
-  $("#cartDrawer").classList.remove("show");
-  $$("[data-close]").forEach(b=>b.onclick=()=>{
-  const el=$(b.dataset.close);
+    toast("Siparişin oluşturuldu: "+data.id);$("#checkoutModal").classList.remove("show");document.body.style.overflow="";showAccount();
+  }catch(err){toast(err.message||"Sipariş oluşturulamadı.")}finally{btn.disabled=false;btn.textContent="Siparişi oluştur"}
+};
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-close]");
+  if(!b)return;
+  e.preventDefault();
+  e.stopPropagation();
+
+  const id=b.dataset.close;
+  const el=document.getElementById(id);
   if(!el)return;
 
   el.classList.remove("show");
 
-  if(el.id==="cartDrawer"){
-    $("#cartOverlay").classList.remove("show");
+  if(id==="cartDrawer"){
+    const overlay=document.getElementById("cartOverlay");
+    if(overlay)overlay.classList.remove("show");
   }
 
-  if(el.id==="productDrawer"){
-    $("#productOverlay").classList.remove("show");
+  if(id==="productDrawer"){
+    const overlay=document.getElementById("productOverlay");
+    if(overlay)overlay.classList.remove("show");
   }
 
   document.body.style.overflow="";
 });
-  document.body.style.overflow="hidden";
-};
-    toast("Siparişin oluşturuldu: "+data.id);showAccount();
-  }catch(err){toast(err.message||"Sipariş oluşturulamadı.")}finally{btn.disabled=false;btn.textContent="Siparişi oluştur"}
-};
-$$("[data-close]").forEach(b=>b.onclick=()=>{
-  $(b.dataset.close).classList.remove("show");
-  document.body.style.overflow="";
-});
+
 $$("[data-open]").forEach(b=>b.onclick=()=>{if(b.dataset.open==="account")showAccount()});
 $$(".filter").forEach(b=>b.onclick=()=>{$$(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");state.filter=b.dataset.filter;renderProducts()});
 $("#menuOpen").onclick=()=>$("#mobileMenu").classList.add("show");$("#menuClose").onclick=()=>$("#mobileMenu").classList.remove("show");
