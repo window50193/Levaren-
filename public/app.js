@@ -101,7 +101,22 @@ $("#checkoutForm").onsubmit=async e=>{
   if(!state.cart.length)return toast("Önce sepete ürün ekle.");
   $("#checkoutModal").classList.add("show");
   $("#cartDrawer").classList.remove("show");
-  $("#cartOverlay").classList.remove("show");
+  $$("[data-close]").forEach(b=>b.onclick=()=>{
+  const el=$(b.dataset.close);
+  if(!el)return;
+
+  el.classList.remove("show");
+
+  if(el.id==="cartDrawer"){
+    $("#cartOverlay").classList.remove("show");
+  }
+
+  if(el.id==="productDrawer"){
+    $("#productOverlay").classList.remove("show");
+  }
+
+  document.body.style.overflow="";
+});
   document.body.style.overflow="hidden";
 };
     toast("Siparişin oluşturuldu: "+data.id);showAccount();
