@@ -1,8 +1,0 @@
-[
-  {"id":1,"name":"Basic Slim Fit Gömlek","cat":"Gömlek","price":1299,"old":1599,"image":"/basic-slim-fit-gomlek.png","new":true,"sizes":["S","M","L","XL"],"desc":"Günlük kullanım için temiz çizgili, slim fit gömlek."},
-  {"id":2,"name":"Premium Triko","cat":"Triko","price":1599,"old":1899,"image":"/premium-triko.png","new":true,"sizes":["S","M","L","XL"],"desc":"Yumuşak dokulu, zamansız siyah triko."},
-  {"id":3,"name":"Premium Gömlek","cat":"Gömlek","price":1499,"old":1799,"image":"/premium-gomlek.png","new":true,"sizes":["S","M","L","XL"],"desc":"Şehir stiline uyum sağlayan premium gömlek."},
-  {"id":4,"name":"Premium Ceket","cat":"Ceket","price":2499,"old":2999,"image":"/premium-ceket.png","new":true,"sizes":["S","M","L","XL"],"desc":"Keskin omuz çizgisiyle modern siyah ceket."},
-  {"id":5,"name":"Premium Kumaş Pantolon","cat":"Pantolon","price":1899,"old":2299,"image":"/premium-kumas-pantolon.png","new":false,"sizes":["S","M","L","XL"],"desc":"Klasik kesim, kolay kombinlenen kumaş pantolon."},
-  {"id":6,"name":"Klasik Gömlek","cat":"Gömlek","price":1199,"old":1499,"image":"/klasik-gomlek.png","new":false,"sizes":["S","M","L","XL"],"desc":"Minimal gardırobun temel parçalarından."}
-]
