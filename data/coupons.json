@@ -1,5 +1,0 @@
-[
-  {"code":"YENI10","type":"percent","value":10,"min":0,"active":true,"usageLimit":0,"usedCount":0},
-  {"code":"LEVAREN10","type":"percent","value":10,"min":0,"active":true,"usageLimit":0,"usedCount":0},
-  {"code":"LVR15","type":"percent","value":15,"min":1500,"active":true,"usageLimit":0,"usedCount":0}
-]
